@@ -1,3 +1,5 @@
+file_name = str(input("Podaj nazwę pliku, gdzie masz zapisane zadania (w przypadku braku podaj nazwę pliku gdzie chcesz je zapisać): "))
+
 user_choice = -1
 
 tasks = []
@@ -22,22 +24,22 @@ def delete_task():
     tasks.pop(task_index)
     print("Usunięto zadanie!")
 
-def save_tasks_to_file():
-    file = open("tasks.txt", "w")
+def save_tasks_to_file(file_name):
+    file = open(file_name + ".txt", "w")
     for task in tasks:
         file.write(task+"\n")
     file.close()
 
-def load_tasks_from_file():
+def load_tasks_from_file(file_name):
     try:
-        file = open("tasks.txt")
+        file = open(file_name + ".txt")
         for line in file.readlines():
             tasks.append(line.strip())
         file.close()
     except FileNotFoundError:
         return
 
-load_tasks_from_file()
+load_tasks_from_file(file_name)
 
 while user_choice != 5:
     if user_choice == 1:
@@ -50,7 +52,7 @@ while user_choice != 5:
         delete_task()
 
     if user_choice == 4:
-        save_tasks_to_file()
+        save_tasks_to_file(file_name)
 
     print()
     print("1. Pokaż zadania")
