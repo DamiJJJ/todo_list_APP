@@ -39,36 +39,39 @@ def load_tasks_from_file(file_name):
 
 load_tasks_from_file(file_name)
 
-while True:
-    print()
-    print("1. Pokaż zadania")
-    print("2. Dodaj zadanie")
-    print("3. Usuń zadanie")
-    print("4. Wyjdź")
+try:
+    while True:
+        print()
+        print("1. Pokaż zadania")
+        print("2. Dodaj zadanie")
+        print("3. Usuń zadanie")
+        print("4. Wyjdź")
 
-    user_choice = int(input("Wybierz liczbę: "))
-    print()
+        user_choice = int(input("Wybierz liczbę: "))
+        print()
 
-    if user_choice == 1:
-        show_tasks()
+        if user_choice == 1:
+            show_tasks()
 
-    if user_choice == 2:
-        add_task()
+        if user_choice == 2:
+            add_task()
 
-    if user_choice == 3:
-        delete_task()
+        if user_choice == 3:
+            delete_task()
 
-    if user_choice == 4:
-        end = ""
-        while True:
-            end = str(input("Chcesz zapisać swoją pracę? t - tak, n - nie:\n"))
-            if end == "t":
-                save_tasks_to_file(file_name)
-                break
-            if end == "n":
-                break
-            else:
-                print("Musisz wybrać jedną z dwóch dostępnych opcji!")
-        break
-    if user_choice > 4:
-        print("Musisz wybrać jedną z opcji poniżej:\n")
+        if user_choice == 4:
+            end = ""
+            while True:
+                end = str(input("Chcesz zapisać swoją pracę? t - tak, n - nie:\n"))
+                if end == "t":
+                    save_tasks_to_file(file_name)
+                    break
+                if end == "n":
+                    break
+                else:
+                    print("Musisz wybrać jedną z dwóch dostępnych opcji!")
+            break
+        if user_choice != 4:
+            print("Musisz wybrać jedną z opcji poniżej:\n")
+except ValueError:
+    print("Musisz wybrać jedną z opcji poniżej:\n")
