@@ -1,7 +1,5 @@
 file_name = str(input("Podaj nazwę pliku, gdzie masz zapisane zadania (w przypadku braku podaj nazwę pliku gdzie chcesz je zapisać): "))
 
-user_choice = -1
-
 tasks = []
 
 def show_tasks():
@@ -41,7 +39,16 @@ def load_tasks_from_file(file_name):
 
 load_tasks_from_file(file_name)
 
-while user_choice != 5:
+while True:
+    print()
+    print("1. Pokaż zadania")
+    print("2. Dodaj zadanie")
+    print("3. Usuń zadanie")
+    print("4. Wyjdź")
+
+    user_choice = int(input("Wybierz liczbę: "))
+    print()
+
     if user_choice == 1:
         show_tasks()
 
@@ -52,14 +59,16 @@ while user_choice != 5:
         delete_task()
 
     if user_choice == 4:
-        save_tasks_to_file(file_name)
-
-    print()
-    print("1. Pokaż zadania")
-    print("2. Dodaj zadanie")
-    print("3. Usuń zadanie")
-    print("4. Zapisz zmiany do pliku")
-    print("5. Wyjdź")
-
-    user_choice = int(input("Wybierz liczbę: "))
-    print()
+        end = ""
+        while True:
+            end = str(input("Chcesz zapisać swoją pracę? t - tak, n - nie:\n"))
+            if end == "t":
+                save_tasks_to_file(file_name)
+                break
+            if end == "n":
+                break
+            else:
+                print("Musisz wybrać jedną z dwóch dostępnych opcji!")
+        break
+    if user_choice > 4:
+        print("Musisz wybrać jedną z opcji poniżej:\n")
